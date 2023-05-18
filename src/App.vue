@@ -1,82 +1,45 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
-
 <template>
-  <header>
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
-    <!-- <div class="wrapper"> -->
-    <!-- <HelloWorld msg="You did it!" /> -->
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
-    </nav>
-    <!-- </div> -->
-  </header>
+  <ui5-shellbar primary-title="UI5 Web Components" secondary-title="The Best Run SAP" show-co-pilot>
+    <ui5-button icon="menu" slot="startButton" id="startButton" @click="toggleNav"></ui5-button>
+  </ui5-shellbar>
+  <!-- <ui5-side-navigation :collapsed="collapsed">
+    <ui5-side-navigation-item text="Home" icon="home"></ui5-side-navigation-item>
+    <ui5-side-navigation-item text="People" expanded icon="group">
+      <ui5-side-navigation-sub-item text="From My Team"></ui5-side-navigation-sub-item>
+      <ui5-side-navigation-sub-item text="From Other Teams"></ui5-side-navigation-sub-item>
+    </ui5-side-navigation-item>
+    <ui5-side-navigation-item text="Locations" icon="locate-me" selected></ui5-side-navigation-item>
+    <ui5-side-navigation-item text="Events" icon="calendar">
+      <ui5-side-navigation-sub-item text="Local"></ui5-side-navigation-sub-item>
+      <ui5-side-navigation-sub-item text="Others"></ui5-side-navigation-sub-item>
+    </ui5-side-navigation-item>
+    <ui5-side-navigation-item slot="fixedItems" text="Useful Links" icon="chain-link"></ui5-side-navigation-item>
+    <ui5-side-navigation-item  slot="fixedItems" text="History" icon="history"></ui5-side-navigation-item>
+  </ui5-side-navigation> -->
   <RouterView />
 </template>
 
+<script>
+import { RouterLink, RouterView } from "vue-router";
+// import "@ui5/webcomponents-fiori/dist/SideNavigation"
+// import "@ui5/webcomponents-fiori/dist/SideNavigationItem.js";
+// import "@ui5/webcomponents-fiori/dist/SideNavigationSubItem.js";
+export default {
+  data() {
+    return {
+      collapsed: false
+    }
+  },
+  methods: {
+    toggleNav() {
+      this.collapsed = !this.collapsed
+    }
+  }
+}
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+ui5-shellbar::part(root) {
+  padding-left: .5rem;
 }
 </style>
